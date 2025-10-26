@@ -18,9 +18,15 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from ninja import NinjaAPI
+from store.api import router as store_router
+
+api=NinjaAPI()
+api.add_router("/store",store_router)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/',api.urls)
 ]
 
 if settings.DEBUG:
